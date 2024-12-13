@@ -2,6 +2,7 @@
 
 // constants
 const body = document.querySelector('body');
+const gridContainer = document.querySelector('#grid_container');
 
 // variables
 let gridSize = null;
@@ -23,10 +24,36 @@ body.addEventListener('click', (event) => {
     let target = event.target;
     switch(target.id) {
         case 'num_of_squares_btn':
+            while (gridContainer.firstChild) {
+                gridContainer.removeChild(gridContainer.firstChild);
+            }
             gridSize = gridSizeF();
             console.log(gridSize);
+            // createRowOfDivs(gridSize, 0);
+            // createRowOfDivs(gridSize, 1);
+            addRow(gridSize);
             break;
     }
 });
 
-// create a 16x16 square of divs
+function createRowOfDivs(size, rowNum) {
+    const rowDiv = document.createElement('div');
+    rowDiv.setAttribute('class', `row`);
+    for (i = 0; i < size; i++) {
+        const div = document.createElement('div');
+        div.setAttribute('id', `div_${rowNum}_${i}`);
+        div.setAttribute('class', `grid`);
+        rowDiv.appendChild(div);
+    }
+    gridContainer.appendChild(rowDiv);
+}
+
+function addRow(size) {
+    for (x = 0; x < size; x++) {
+        createRowOfDivs(size, x);
+    }
+}
+
+// changes
+// - clear previous grid before generating new grid
+// - write loop functions to initialise a grid of divs with unique id's
