@@ -3,9 +3,11 @@
 // constants
 const body = document.querySelector('body');
 const gridContainer = document.querySelector('#grid_container');
+const gridSquareClass = document.querySelector('.grid_square');
 
 // variables
 let gridSize = null;
+
 
 // functions
 // popup to input number of squares per side in grid
@@ -15,8 +17,35 @@ function gridSizeF(){
         numOfSquares = 16;  
     }
     numOfSquares = Math.max(16, numOfSquares);
-    numOfSquares = Math.min(100, numOfSquares);
+    numOfSquares = Math.min(50, numOfSquares);
     return numOfSquares;
+}
+
+function createRowOfDivs(size, rowNum) {
+    const rowDiv = document.createElement('div');
+    rowDiv.setAttribute('class', `row`);
+    for (i = 0; i < size; i++) {
+        const div = document.createElement('div');
+        div.setAttribute('id', `div_${rowNum}_${i}`);
+        div.setAttribute('class', `grid_square`);
+        let containerWidth = getWidthOf(gridContainer);
+        let squareSize = `${Math.floor(containerWidth / gridSize)}px`;
+        div.style.width = squareSize;
+        div.style.height = squareSize;
+        rowDiv.appendChild(div);
+    }
+    gridContainer.appendChild(rowDiv);
+}
+
+function createGrid(size) {
+    for (x = 0; x < size; x++) {
+        createRowOfDivs(size, x);
+    }
+}
+
+function getWidthOf(container) {
+    let width = container.clientWidth;
+    return width
 }
 
 // click event listener
@@ -28,32 +57,18 @@ body.addEventListener('click', (event) => {
                 gridContainer.removeChild(gridContainer.firstChild);
             }
             gridSize = gridSizeF();
-            console.log(gridSize);
-            // createRowOfDivs(gridSize, 0);
-            // createRowOfDivs(gridSize, 1);
-            addRow(gridSize);
+
+            createGrid(gridSize);
             break;
     }
 });
 
-function createRowOfDivs(size, rowNum) {
-    const rowDiv = document.createElement('div');
-    rowDiv.setAttribute('class', `row`);
-    for (i = 0; i < size; i++) {
-        const div = document.createElement('div');
-        div.setAttribute('id', `div_${rowNum}_${i}`);
-        div.setAttribute('class', `grid`);
-        rowDiv.appendChild(div);
-    }
-    gridContainer.appendChild(rowDiv);
-}
 
-function addRow(size) {
-    for (x = 0; x < size; x++) {
-        createRowOfDivs(size, x);
-    }
-}
+// write a function to detect the container size and auto-size the grid divs
+
+
 
 // changes
-// - clear previous grid before generating new grid
-// - write loop functions to initialise a grid of divs with unique id's
+// - Automatically determine square size based on the width of the grid container
+// - Reduced maximum to 50 as 100 seems to create lag and very small squares
+// - Refactored code to remove squareSize from global variables
