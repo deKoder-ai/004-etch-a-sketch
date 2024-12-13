@@ -26,6 +26,9 @@ function gridSizeF(){
     gridSize = numOfSquares
     return gridSize;
 }
+function resetGridContainerSize() {
+    gridContainer.style.width = '39%';
+}
 function getSquareSize() {
     let containerWidth = getWidthOf(gridContainer);
     let pixelNumber = Math.floor(containerWidth / gridSize);
@@ -69,6 +72,7 @@ body.addEventListener('click', (event) => {
     switch(target.id) {
         case 'num_of_squares_btn':
             clearPreviousGrid();
+            resetGridContainerSize();
             gridSizeF();
             squareSize = getSquareSize()[1];
             gss = getSquareSize[0];
@@ -129,11 +133,11 @@ gridContainer.addEventListener('mouseover', (event) => {
 });
 
 
-// write a function to detect the container size and auto-size the grid divs
+// to do
+// - figure out how draw only when left mouse button is clicked
 
 
 
 // changes
-// - moved code to clear previous grid to a function
-// - added function to resize gridContainer to match grid
-// - added the ability to 
+// - fixed a bug that meant the grid size shrunk every time the grid size was
+//   increased by resetting the gridContainer width to 39% - resetGridContainerSize();
