@@ -1,0 +1,47 @@
+/* style.css template */
+
+/* global - specificity = 0 */
+* {
+    padding: 0; /* space between the border of a box and the content of the box */
+    border: 0; /* space between the margin and the padding */
+    margin: 0; /* space between the borders of a box and the borders of adjacent boxes. vertical margins overlap, largest value applied */
+    box-sizing: border-box; /* ensure that if width and height elements are set for an object they include p, m ,b */
+    line-height: 1.5;
+    outline: 1px dashed rgba(55, 52, 235, 0.623);
+}
+
+body {
+    font-size: 22px;
+    font-family: Verdana, sans-serif;
+    color: rgb(204, 204, 204);
+    background-color: #222222;
+}
+
+/* ========== BOX MODEL ========== //
+//
+// Margin      | e.g. margin: 10px 10px 10px 20px (top | right | bottom | left)  
+// Border      | e.g. border: 2px dotted green
+// Padding     | e.g. padding: 10px (shorthand)
+// Content     | 
+// box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
+*/
+
+/* flex center */
+#container,
+#num_of_squares_btn_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#num_of_squares_btn_div {
+    width: 100%;
+    height: 50px;
+}
+#num_of_squares_btn {
+    padding: 5px 20px;
+    border-radius: 7px;
+}
+#num_of_squares_btn:hover {
+    cursor: pointer;
+}
