@@ -69,6 +69,3 @@ body.addEventListener('click', (event) => {
 
 
 // changes
-// - Automatically determine square size based on the width of the grid container
-// - Reduced maximum to 50 as 100 seems to create lag and very small squares
-// - Refactored code to remove squareSize from global variables
